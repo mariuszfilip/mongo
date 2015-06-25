@@ -1,0 +1,82 @@
+5.
+
+a)
+db.people.findOne()
+b)
+ db.people.find({},{_id:0,first_name:1,last_name:1}).pretty()
+c)
+db.people.find({},{_id:0,first_name:1,last_name:1}).pretty()
+
+ wyszyukuje po imieniu
+
+db.people.find({last_name:"Sanchez"})
+
+db.people.find({last_name:"Henry"})
+
+db.people.find({
+	$or : [{last_name:"Henry"},{last_name:"Sanchez"}]
+
+	})
+
+db.people.find({
+	$or : [{last_name:"Henry"},{last_name:"Sanchez"}]
+
+	},{last_name:1})
+
+
+db.people.find({$or : [{last_name:"Henry"},{last_name:"Sanchez"}]},{last_name:1}).limit(1)
+
+c)
+
+db.people.find({$or : [{last_name:"Henry"},{last_name:"Sanchez"}]},{_id:0,last_name:1,"location.city:1})
+
+d)
+
+db.people.aggregate([{$project:{last_name:1,bm : { $divide:["$weight","$height"] }}}])
+
+db.people.aggregate([{$project:{last_name:1,bm : { $divide:["weight","height"] }}}])
+
+
+
+e)
+
+db.people.createIndex( { currentposition  : "2d" } )
+db.people.createIndex( { currentposition  : "2dsphere" } )
+
+ 
+
+--   coordinates: [ <longitude> , <latitude> ]
+
+db.people.find(
+   {
+     currenposition:
+       { $near :
+          {
+            $geometry: { type: "Point",  coordinates: [ 124, 7 ] },
+            $minDistance: 1000,
+            $maxDistance: 5000
+          }
+       }
+   }
+)
+
+
+db.people.find( { currenposition: { $nearSphare: { $geometry: { type:"Point",coordinates : [124,7] },$maxDistance: 1000} } } )
+
+
+db.people.find({loc: {$geoWithin: {$geometry: {type : "Polygon" ,coordinates: [ [ [ 0, 0 ], [ 3, 6 ], [ 6, 1 ], [ 0, 0 ] ] ]}}}})
+
+
+
+
+
+
+
+f)
+
+
+
+
+
+
+
