@@ -28,7 +28,7 @@ db.people.find({$or : [{last_name:"Henry"},{last_name:"Sanchez"}]},{last_name:1}
 
 c)
 
-db.people.find({$or : [{last_name:"Henry"},{last_name:"Sanchez"}]},{_id:0,last_name:1,"location.city:1})
+db.people.find({$or : [{last_name:"Henry"},{last_name:"Sanchez"}]},{_id:0,last_name:1,"location.city":1})
 
 d)
 

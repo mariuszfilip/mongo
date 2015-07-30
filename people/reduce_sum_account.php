@@ -33,7 +33,7 @@ try{
         "}".
         "return reducedVal; }");
 
-    $reduce_sum = new MongoCode("function(k, vals) { ".
+   /* $reduce_sum = new MongoCode("function(k, vals) { ".
         "var reducedVal =0;".
         "for (var i in vals) {".
              "reducedVal+= vals[i].balance;".
@@ -43,7 +43,7 @@ try{
 
     $finalize_reduce = new MongoCode("function(k, reducedVal) { ".
         "reducedVal.sum_all+=reducedVal.sum;".
-        "return reducedVal; }");
+        "return reducedVal; }");*/
 
 
     $sex = $db->command(array(

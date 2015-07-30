@@ -17,7 +17,7 @@ try{
     //
     $map = new MongoCode("function() {
                       for (var idx = 0; idx < this.account.length; idx++) {
-                           var key = this.account[idx].cardnumber;
+                           var key = this.account[idx].cardtype;
                            var value = 1;
                            emit(key, value);
                        }
@@ -48,10 +48,14 @@ try{
     echo '<br/>----------------------<br/>';
 
     $users = $db->selectCollection($sex['result'])->find();
+    $i = 0;
     foreach ($users as $user) {
         var_dump($user);
+        $i++;
         // echo "{$user['_id']} : {$user['value']} .<br/>";
     }
+    echo 'count';
+    var_dump($i);
 
 }
 catch (Exception $e){

@@ -35,7 +35,7 @@ foreach ($cursor as $doc) {
                 '$geometry' =>array(
                     'type' => 'Point',
                     'coordinates'=>array(floatval($doc['currentposition'][0]['longitude']),floatval($doc['currentposition'][0]['latitude'])),
-                    '$maxDistance' => intval(100000000),
+                    '$maxDistance' => floatval(100000000000),
                     ))));
 
     print_r($query);
@@ -43,8 +43,13 @@ foreach ($cursor as $doc) {
     //print($doc);
 
 
-    $cursorResult = $collection->find($rangeQuery);
+    $cursorResult = $collection->find($query);
     var_dump($cursorResult);
+
+    foreach ($cursorResult as $user) {
+        var_dump($user);
+        // echo "{$user['_id']} : {$user['value']} .<br/>";
+    }
 }
 
 
